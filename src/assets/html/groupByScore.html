@@ -1,0 +1,33 @@
+<script>
+let studends = [{name: '张三', score: 84},{name: '李四', score: 58},{name: '王五', score: 99},{name: '赵柳', score: 69}]
+function getGrade(score){
+	return score < 60 ? 'C' : score < 80 ? 'B' : 'A';
+}
+let g_i = '';
+let arr_stu_A = [];
+let arr_stu_B = [];
+let arr_stu_C = [];
+let obj_stu = {};
+function groupBy(item){
+	for(let i=0; i<item.length; i++){
+		g_i = getGrade(item[i].score)
+		if(g_i == "A"){
+			arr_stu_A.push(item[i]);
+		}
+		if(g_i == "B"){
+			arr_stu_B.push(item[i]);
+		}
+        if(g_i == "C"){
+			arr_stu_C.push(item[i]);
+        }
+    }
+	obj_stu = {
+		"A" : arr_stu_A,
+		"B" : arr_stu_B,
+		"C" : arr_stu_C
+    }
+	console.log(obj_stu)
+	return obj_stu;
+}
+groupBy(studends);
+</script>
