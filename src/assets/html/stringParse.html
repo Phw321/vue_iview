@@ -1,0 +1,64 @@
+<script>
+let str = "arr<string<int,num>>"
+let m_index = '';
+let b_index = '';
+let d_index = '';
+let typeName0 = '';
+let typeName1 = '';
+let typeName2 = '';
+let str_sub = '';
+function parse(str){
+	m_index = str.indexOf('<');
+	b_index = str.lastIndexOf('>');
+	d_index = str.indexOf(',');
+	if(m_index > 0){
+		typeName0 = str.substring(0,m_index);
+		str_sub = str.substring(m_index + 1, b_index);
+    }else{
+		typeName0 = str;
+		if(d_index > 0){
+			typeName1 = str_sub.substring(0,d_index);
+            typeName2 = str_sub.substring(d_index + 1);
+        }else{
+            typeName1 = str;
+        }
+		return "结束";
+	}
+	parse(str_sub);
+}
+// 实例1
+// let input = 'int';
+// let result = parse(intput);
+// result 结果为：
+// {
+//     type: 'int'
+// };
+// 实例2
+// let input = 'Array<Array<string>>';
+// let result = parse(intput);
+// result 结果为：
+// {
+//     type: 'Array',
+//     typeArgs: [{
+//         type: 'Array',
+//         typeArgs: [{
+//             type: 'string'
+//         }]
+//         }]
+// };
+// 实例3
+// let input = 'Map<string, Array<bool>>'; 
+// let result = parse(intput); 
+// result 结果为：
+// { 
+//     type: 'Map', 
+//     typeArgs: [{ 
+//         type: 'string'
+//     }, { 
+//         type: 'Array',
+//         typeArgs: [{
+//             type: 'bool'
+//         }]
+//     }]
+// }
+</script>
