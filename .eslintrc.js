@@ -23,7 +23,11 @@ module.exports = {
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
+    "semi": [1, "always"],
+    "space-before-function-paren": 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // 避免(vue将标签渲染为原生html标签时，由于这些标签是自闭合的，所以有end标签会报错)报错
+    'vue/no-parsing-error': [2, { "x-invalid-end-tag": false }]
   }
 }
